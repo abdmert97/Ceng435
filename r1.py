@@ -1,28 +1,19 @@
-import config
+import socket
 
-from socket import *
+msgFromClient       = "Hello UDP Server"
 
-#Port of this server.
-localServerPort = 30211
+bytesToSend         = str.encode(msgFromClient)
 
-#IP of Destination
-destServerName = '10.10.1.2'
+serverAddressPort   = ("10.10.1.2", 30211)
 
-#Port of Destination
-destServerPort = 30212
+bufferSize          = 1024
 
-#Listen to localServerPort.
-localSocket = socket(AF_INET, SOCK_DGRAM)
-localSocket.bind(('10.10.2.2', localServerPort))
+# Create a UDP socket at client side
+UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+# Send to server using created UDP socket
+UDPClientSocket.sendto(bytesToSend, serverAddressPort)
 
-#Initialize destSocket and connect to Destination.
-destSocket = socket(AF_INET, SOCK_DGRAM)
-destSocket.connect((destServerName, destServerPort))
-
-while True:
-    (dataFBroker, addrBroker) = localSocket.recvfrom(config.msg_size)
-    #Forward the sentence to Destination
-    destSocket.send(dataFBroker)
-
-localSocket.close()
-destSocket.close()
+msgFromServer = UDPClientSocket.recvfrom(bufferSize)
+ 
+msg = "Message from Server {}".format(msgFromServer[0])
+print(msg)
