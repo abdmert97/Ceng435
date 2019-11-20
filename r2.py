@@ -1,28 +1,26 @@
-import config
+import socket
 
-from socket import *
+localIP     = "172.17.1.22"
+localPort   = 30212
+bufferSize  = 1024
 
-#Port of this server.
-localServerPort = 30212
+msgFromServer       = "Hello UDP Client"
+bytesToSend         = str.encode(msgFromServer)
+UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+UDPServerSocket.bind((localIP, localPort))
+  
+print("UDP server up and listening")
 
-#IP of Broker.
-brokerServerName = '10.10.2.1'
 
-#Port of Broker.
-brokerServerPort = 30211
+while(True):
 
-#Initialize localSocket and listen to localServerPort.
-localSocket = socket(AF_INET, SOCK_DGRAM)
-localSocket.bind(('10.10.1.2', localServerPort))
+    bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
 
-#Initialize brokerSocket and connect to Broker.
-brokerSocket = socket(AF_INET, SOCK_DGRAM)
-brokerSocket.connect((brokerServerName, brokerServerPort))
+    message = bytesAddressPair[0]
+    address = bytesAddressPair[1]
+    clientMsg = "Message from Client:{}".format(message)
+    clientIP  = "Client IP Address:{}".format(address)
+    print(clientMsg)
+    print(clientIP)
 
-while True:
-    (dataFDest, addrDest) = localSocket.recvfrom(config.msg_size)
-    #Forward the sentence to Broker.
-    brokerSocket.send(dataFDest)
-
-localSocket.close()
-brokerSocket.close()
+    UDPServerSocket.sendto(bytesToSend, address)
