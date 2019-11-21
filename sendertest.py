@@ -5,7 +5,7 @@ msgFromClient = "Hello UDP Server"
 
 bytesToSend = str.encode(msgFromClient)
 
-serverAddressPort = ("10.10.4.1", 30211)
+serverAddressPort = ("10.10.5.1", 30211)
 
 bufferSize = 1024
 def client(): 
