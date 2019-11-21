@@ -9,7 +9,7 @@ serverAddressPort = ("10.10.5.1", 30222)
 
 bufferSize = 1024
 def client(): 
-    for i in range(0,5):
+    for i in range(0,1):
         # Create a UDP socket at client side
         UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
         #UDPClientSocket.connect((serverAddressPort))
