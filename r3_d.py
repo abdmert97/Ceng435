@@ -2,7 +2,7 @@ import socket
 import datetime
 from threading import Thread 
 
-localIP     ="10.10.6.1"
+localIP     ="10.10.6.2"
 localPorts   = [30300, 30340]
 bufferSize  = 1024
 
