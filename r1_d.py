@@ -35,7 +35,7 @@ for sv in servers: sv.start()
 serverAddressPorts = [("10.10.5.1", 30210)]
 
 def client(i): 
-    for x in range(0,5):
+    for x in range(0,1):
         # Create a UDP socket at client side
         UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
         #UDPClientSocket.connect((serverAddressPorts[i]))
