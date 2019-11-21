@@ -1,5 +1,5 @@
 import socket
-from threading import Thread
+import threading
 
 localIP     ="10.10.4.1"
 localPort   = 30211
@@ -24,3 +24,8 @@ def server():
     UDPServerSocket.sendto(bytesToSend, address)
 servers = [Thread(target=server, args=()) for i in range(5)]
 for sv in servers: sv.start()
+def after_timeout():
+  print "KILL MAIN THREAD: %s" % threading.currentThread().ident
+  raise SystemExit
+
+threading.Timer(2, after_timeout).start()
