@@ -21,7 +21,7 @@ def client():
         msgFromServer = UDPClientSocket.recvfrom(bufferSize)
         b = datetime.datetime.now()
         c = b - a
-        print(c.microseconds)
+        print(c.milliseconds)
         msg = "Message from Server {}".format(msgFromServer[0])
         #print(msg)
 
