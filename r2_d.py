@@ -2,7 +2,7 @@ import socket
 from threading import Thread 
 
 localIP     ="10.10.5.1"
-localPorts   = [30210]
+localPorts   = [30200, 30210, 30230, 30240]
 bufferSize  = 1024
 
 msgFromClient = "Hello UDP Server"
@@ -27,5 +27,5 @@ def server(i):
 
         bytesToSend         = str.encode(str(message).upper())
         UDPServerSocket.sendto(bytesToSend, address)
-servers = [Thread(target=server, args=(i,)) for i in range(1)]
+servers = [Thread(target=server, args=(i,)) for i in range(4)]
 for sv in servers: sv.start()
