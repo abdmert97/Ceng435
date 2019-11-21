@@ -5,9 +5,9 @@ from threading import Thread
 msgFromClient = "Hello UDP Server"
 
 bytesToSend = str.encode(msgFromClient)
-r1AddressPort = ("10.10.4.1", 30111)
-r2AddressPort = ("10.10.5.1", 30211)
-r3AddressPort = ("10.10.6.2", 30311)
+r1AddressPort = ("10.10.4.1", 30101)
+r2AddressPort = ("10.10.5.1", 30201)
+r3AddressPort = ("10.10.6.2", 30301)
 serverAddressPorts = [r1AddressPort, r2AddressPort, r3AddressPort]
 
 bufferSize = 1024
