@@ -22,4 +22,4 @@ def client():
         print(msg)
 
 clients = [Thread(target=client, args=()) for i in range(5)]
-for cl in clients: sv.start()
+for cl in clients: cl.start()
