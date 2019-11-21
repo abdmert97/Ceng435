@@ -1,26 +1,20 @@
 import socket
 
-localIP     = "172.17.1.22"
-localPort   = 30212
-bufferSize  = 1024
+msgFromClient       = "Hello UDP Server"
 
-msgFromServer       = "Hello UDP Client"
-bytesToSend         = str.encode(msgFromServer)
-UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-UDPServerSocket.bind((localIP, localPort))
-  
-print("UDP server up and listening")
+bytesToSend         = str.encode(msgFromClient)
 
+serverAddressPort   = ("10.10.4.1", 30211)
 
-while(True):
+bufferSize          = 1024
 
-    bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
+# Create a UDP socket at client side
+UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+#UDPClientSocket.connect((serverAddressPort))
+# Send to server using created UDP socket
+UDPClientSocket.sendto(bytesToSend, serverAddressPort)
 
-    message = bytesAddressPair[0]
-    address = bytesAddressPair[1]
-    clientMsg = "Message from Client:{}".format(message)
-    clientIP  = "Client IP Address:{}".format(address)
-    print(clientMsg)
-    print(clientIP)
-
-    UDPServerSocket.sendto(bytesToSend, address)
+msgFromServer = UDPClientSocket.recvfrom(bufferSize)
+ 
+msg = "Message from Server {}".format(msgFromServer[0])
+print(msg)
