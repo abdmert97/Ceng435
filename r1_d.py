@@ -2,7 +2,7 @@ import socket
 from threading import Thread 
 
 localIP     ="10.10.4.1"
-localPorts   = [30111, 30222]
+localPorts   = [30100]
 bufferSize  = 1024
 
 msgFromClient = "Hello UDP Server"
@@ -31,7 +31,7 @@ servers = [Thread(target=server, args=(i,)) for i in range(1)]
 for sv in servers: sv.start()
 
 
-serverAddressPorts = [("10.10.4.1", 30211), ("10.10.4.1", 30222)]
+serverAddressPorts = [("10.10.4.1", 30210), ("10.10.4.1", 30410)]
 
 def client(i): 
     for x in range(1):
