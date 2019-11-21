@@ -11,7 +11,7 @@ UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 UDPServerSocket.bind((localIP, localPort))
 
 def server(i):  
-    while(true):
+    while(True):
         print("UDP thread"+str(i)+" up and listening")
         bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
 
