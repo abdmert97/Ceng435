@@ -9,9 +9,9 @@ msgFromServer       = "Hello UDP Client"
 bytesToSend         = str.encode(msgFromServer)
 UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 UDPServerSocket.bind((localIP, localPort))
-  
-print("UDP server up and listening")
-def server():
+
+def server():  
+    print("UDP thread up and listening")
     bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
 
     message = bytesAddressPair[0]
