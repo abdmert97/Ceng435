@@ -1,7 +1,7 @@
 import socket
 from threading import Thread 
 
-localIP     ="10.10.4.1"
+localIP     ="10.10.5.1"
 localPorts   = [30211, 30222]
 bufferSize  = 1024
 
