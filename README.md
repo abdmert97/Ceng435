@@ -11,3 +11,6 @@ the costs of the links (s-r1, r1-d) will be estimated and saved by r1,  the cost
 * r1 sden alıyor r2 ile dye veriyor
 * r2 s,r1den alıyor d,r3e veriyor
 * r3 s,r2den alıyor d ye veriyor
+
+
+port 30(server)(client)0
