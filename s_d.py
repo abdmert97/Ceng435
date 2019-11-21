@@ -27,5 +27,5 @@ def client(i):
         msg = "Message from Server {}".format(msgFromServer[0])
         #print(msg)
 
-clients = [Thread(target=client, args=(i)) for i in range(3)]
+clients = [Thread(target=client, args=(i,)) for i in range(3)]
 for cl in clients: cl.start()
