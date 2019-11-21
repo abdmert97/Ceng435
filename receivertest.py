@@ -22,7 +22,7 @@ def server():
     print(clientIP)
 
     UDPServerSocket.sendto(bytesToSend, address)
-servers = [Thread(target=server, args=()) for i in range(5)]
+servers = [threading.Thread(target=server, args=()) for i in range(5)]
 for sv in servers: sv.start()
 def after_timeout():
   print "KILL MAIN THREAD: %s" % threading.currentThread().ident
