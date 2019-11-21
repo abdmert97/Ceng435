@@ -1,4 +1,5 @@
 import socket
+import datetime
 from threading import Thread 
 
 msgFromClient = "Hello UDP Server"
@@ -15,11 +16,14 @@ def client():
         #UDPClientSocket.connect((serverAddressPort))
         # Send to server using created UDP socket
         UDPClientSocket.sendto(bytesToSend, serverAddressPort)
+        a = datetime.datetime.now()
 
         msgFromServer = UDPClientSocket.recvfrom(bufferSize)
-        
+        b = datetime.datetime.now()
+        c = b - a
+        print(c.microseconds)
         msg = "Message from Server {}".format(msgFromServer[0])
-        print(msg)
+        #print(msg)
 
 clients = [Thread(target=client, args=()) for i in range(5)]
 for cl in clients: cl.start()
