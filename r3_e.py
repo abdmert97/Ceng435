@@ -4,7 +4,7 @@ import datetime
 dAddress = ("10.10.5.2", 30430)
 
 localIP ="10.10.6.2"
-localPort = 30301
+localPort = 30300
 
 bufferSize = 1024
 
