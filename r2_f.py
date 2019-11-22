@@ -16,6 +16,7 @@ def client(i):
     f.write("--- Individual Tests ---\n")
     totaltime = 0
     UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+    print("Connected to " + str(i))
     for x in range(1000):
         # Create a UDP socket at client side
         #UDPClientSocket.connect((serverAddressPorts[i]))
