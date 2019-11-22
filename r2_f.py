@@ -21,10 +21,10 @@ f = open("link_costs.txt", "w")
 def client(i): 
     f.write("--- Individual Tests ---\n")
     totaltime = 0
+    # Create a UDP socket at client side
     UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
     print("Sending to " + str(i))
     for x in range(msgCount):
-        # Create a UDP socket at client side
         #UDPClientSocket.connect((serverAddressPorts[i]))
         # Send to server using created UDP socket
         UDPClientSocket.sendto(bytesToSend, serverAddressPorts[i])
@@ -34,9 +34,9 @@ def client(i):
         b = datetime.datetime.now()
         c = b - a
         totaltime += c.microseconds
-        print(c.microseconds/1000.0)
+        #print(c.microseconds/1000.0)
         msg = "Message from Server {}".format(msgFromServer[0])
-        print(msg)
+        #print(msg)
         f.write(str(x) + " - " + str((c.microseconds)/1000.0) + "\n")
     print("Closing " + str(i))
     UDPClientSocket.close()
