@@ -8,23 +8,23 @@ localPort = 30300
 
 bufferSize = 1024
 
+for i in range(1000):
+    UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+    UDPServerSocket.bind((localIP, localPort))
 
-UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-UDPServerSocket.bind((localIP, localPort))
+    bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
+    message = bytesAddressPair[0]
+    address = bytesAddressPair[1]
+    clientMsg = "Message from Client:{}".format(message)
+    clientIP  = "Client IP Address:{}".format(address)
+    print(clientMsg)
+    print(clientIP)
 
-bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
-message = bytesAddressPair[0]
-address = bytesAddressPair[1]
-clientMsg = "Message from Client:{}".format(message)
-clientIP  = "Client IP Address:{}".format(address)
-print(clientMsg)
-print(clientIP)
+    UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+    UDPClientSocket.sendto(message, dAddress)
 
-UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-UDPClientSocket.sendto(message, dAddress)
+    msgFromServer = UDPClientSocket.recvfrom(bufferSize)
 
-msgFromServer = UDPClientSocket.recvfrom(bufferSize)
- 
-msg = "Message from Server {}".format(msgFromServer[0])
-print(msg)
-UDPServerSocket.sendto(msg, address)
+    msg = "Message from Server {}".format(msgFromServer[0])
+    print(msg)
+    UDPServerSocket.sendto(msg, address)
