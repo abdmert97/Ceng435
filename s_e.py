@@ -17,4 +17,4 @@ for i in range(1000):
     msgFromServer = UDPClientSocket.recvfrom(bufferSize)
 
     msg = "Message from Server {}".format(msgFromServer[0])
-    print(msg)
+    #print(msg)
