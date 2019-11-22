@@ -35,7 +35,8 @@ for sv in servers: sv.start()
 serverAddressPorts = [("10.10.2.2", 30030), ("10.10.5.2", 30430)]
 
 def client(i): 
-    for x in range(0,1):
+    totaltime = 0
+    for x in range(1000):
         # Create a UDP socket at client side
         UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
         #UDPClientSocket.connect((serverAddressPorts[i]))
@@ -46,9 +47,11 @@ def client(i):
         msgFromServer = UDPClientSocket.recvfrom(bufferSize)
         b = datetime.datetime.now()
         c = b - a
-        print(c.microseconds/1000.0)
+        totaltime += c.microseconds
+        #print(c.microseconds/1000.0)
         msg = "Message from Server {}".format(msgFromServer[0])
         #print(msg)
+    print(str((totaltime/1000)/1000.0) + "avg for " + str(i)) 
 
 clients = [Thread(target=client, args=(i,)) for i in range(2)]
 for cl in clients: cl.start()
