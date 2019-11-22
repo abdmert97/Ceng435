@@ -8,6 +8,8 @@ localIP     ="10.10.4.1"
 localPorts   = [30120]
 bufferSize  = 1024
 
+svCount = 1
+clCount = 2
 msgCount = 1000
 msgFromClient = "testtesttest"
 
@@ -18,6 +20,7 @@ dAddress = ("10.10.5.2", 30410)
 bytesToSend = str.encode(msgFromClient)
 serverAddressPorts = [sAddress, dAddress]
 f = open("link_costs.txt", "w")
+testResults = []
 
 
 def server(i):  
@@ -40,7 +43,6 @@ def server(i):
 
 
 def client(i): 
-    f.write("--- Individual Tests ---\n")
     totaltime = 0
     # Create a UDP socket at client side
     UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
@@ -57,16 +59,18 @@ def client(i):
         #print(c.microseconds/1000.0)
         msg = "Message from Server {}".format(msgFromServer[0])
         #print(msg)
-        f.write(str(x) + " - " + str((c.microseconds)/1000.0) + "\n")
+        f.write(str(i) "->" + str(x) + " - " + str((c.microseconds)/1000.0) + "\n")
     UDPClientSocket.close()
-    f.write("--- Average Cost ---\n")
+    testResults.append((totaltime/msgCount)/1000.0)
     f.write(str(i) + " - " + str((totaltime/msgCount)/1000.0) + "\n")
     print(str((totaltime/msgCount)/1000.0) + "avg for " + str(i)) 
 
-clients = [Thread(target=client, args=(i,)) for i in range(2)]
+clients = [Thread(target=client, args=(i,)) for i in range(clCount)]
 for cl in clients: cl.start()
-servers = [Thread(target=server, args=(i,)) for i in range(1)]
+servers = [Thread(target=server, args=(i,)) for i in range(svCount)]
 for sv in servers: sv.start()
 for sv in servers: sv.join()
 for cl in clients: cl.join()
+for i in range(clCount):
+    f.write(str(i) + " - " + testResults[i] + "\n")
 f.close()
