@@ -8,8 +8,8 @@ localIP     ="10.10.4.1"
 localPorts   = [30120]
 bufferSize  = 1024
 
-svCount = 1
-clCount = 2
+svCount = 0
+clCount = 1
 msgCount = 1000
 msgFromClient = "testtesttest"
 
