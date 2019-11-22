@@ -19,7 +19,7 @@ def client(i):
         UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
         #UDPClientSocket.connect((serverAddressPorts[i]))
         # Send to server using created UDP socket
-        UDPClientSocket.sendto(bytesToSend, serverAddressPorts[i])
+        UDPClientSocket.sendto(bytesToSend, serverAddressPorts[0])
         a = datetime.datetime.now()
 
         msgFromServer = UDPClientSocket.recvfrom(bufferSize)
@@ -29,10 +29,10 @@ def client(i):
         #print(c.microseconds/1000.0)
         msg = "Message from Server {}".format(msgFromServer[0])
         #print(msg)
-        f.write(str(i) + " - " + str(c.microseconds/1000.0) + "\n")
+        f.write(str(x) + " - " + str(c.microseconds/1000.0) + "\n")
     print(str((totaltime/1000)/1000.0) + "avg for " + str(i)) 
 
-clients = [Thread(target=client, args=(i,)) for i in range(4)]
+clients = [Thread(target=client, args=(i,)) for i in range(1)]
 for cl in clients: cl.start()
     
 for cl in clients: cl.join()
