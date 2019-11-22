@@ -1,5 +1,5 @@
 import socket
-
+import datetime
 localIP     ="10.10.5.2"
 localPort   = 30430
 bufferSize  = 1024
@@ -12,6 +12,10 @@ bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
 
 message = bytesAddressPair[0]
 address = bytesAddressPair[1]
+
+raw_message = "{}".format(message)
+sendtime = datetime.strptime(raw_message)
+print("formatted: " + str(sendtime))
 clientMsg = "Message from Client:{}".format(message)
 clientIP  = "Client IP Address:{}".format(address)
 print(clientMsg)
