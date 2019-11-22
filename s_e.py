@@ -5,7 +5,7 @@ msgFromClient       = "testtesttest"
 
 bytesToSend         = str.encode(msgFromClient)
 
-r3Address = ("10.10.6.2", 30320)
+r3Address = ("10.10.6.2", 30300)
 
 bufferSize          = 1024
 
