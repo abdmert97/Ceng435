@@ -29,8 +29,8 @@ def client(i):
         #print(c.microseconds/1000.0)
         msg = "Message from Server {}".format(msgFromServer[0])
         #print(msg)
-        f.write(str((c.microseconds/1000)/1000.0) + "\n")
-    print(str(totaltime/1000.0) + "avg for " + str(i)) 
+        f.write(str(c.microseconds/1000.0) + "\n")
+    print(str((totaltime/1000)/1000.0) + "avg for " + str(i)) 
 
 clients = [Thread(target=client, args=(i,)) for i in range(4)]
 for cl in clients: cl.start()
