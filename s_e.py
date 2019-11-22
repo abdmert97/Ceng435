@@ -1,20 +1,20 @@
 import socket
 import datetime
 
+# r3 IP and port
 r3Address = ("10.10.6.2", 30300)
 
 bufferSize          = 1024
-
+# Open UDP socket
 UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 for i in range(1000):
-    # Create a UDP socket at client side
-
+    # Get current time
     a = datetime.datetime.now()
+    # Time in string format 
     msgFromClient = str(a)
-    bytesToSend         = str.encode(msgFromClient)
+    # Encode time string
+    bytesToSend   = str.encode(msgFromClient)
+    # Send message to r3 route
     UDPClientSocket.sendto(bytesToSend, r3Address)
-
-    msgFromServer = UDPClientSocket.recvfrom(bufferSize)
-
-    msg = "Message from Server {}".format(msgFromServer[0])
-    #print(msg)
+    # Wait until message is received and read message
+    msgFromServer = UDPClientSocket.recvfrom(bufferSize) 
