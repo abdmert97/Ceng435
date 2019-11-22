@@ -23,7 +23,6 @@ def client(i):
     totaltime = 0
     # Create a UDP socket at client side
     UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-    print("Sending to " + str(i))
     for x in range(msgCount):
         #UDPClientSocket.connect((serverAddressPorts[i]))
         # Send to server using created UDP socket
@@ -38,7 +37,6 @@ def client(i):
         msg = "Message from Server {}".format(msgFromServer[0])
         #print(msg)
         f.write(str(x) + " - " + str((c.microseconds)/1000.0) + "\n")
-    print("Closing " + str(i))
     UDPClientSocket.close()
     f.write("--- Average Cost ---\n")
     f.write(str(i) + " - " + str((totaltime/msgCount)/1000.0) + "\n")
