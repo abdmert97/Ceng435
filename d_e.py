@@ -4,7 +4,7 @@ localIP     ="10.10.5.2"
 localPort   = 30430
 bufferSize  = 1024
 
-f = open("end_to_end.txt", "w")
+f = open("end_to_end_20ms.txt", "w")
 
 UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 UDPServerSocket.bind((localIP, localPort))
