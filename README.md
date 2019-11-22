@@ -42,3 +42,8 @@
     * 4 is the code for "d" node
     * 30+(server node)+(client node)+0
   E.g. when "s" is server and "r3" is client, selected port is 30030
+  
+  * link_costs.txt: 
+    * Every message's rtt is recorded. The format is "connectionnumber"->"message number" - "rtt"
+    * Every links average rtt is recorded. The format is "connectionnumber" - "average rtt"
+    
