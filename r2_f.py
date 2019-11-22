@@ -57,6 +57,7 @@ def client(i):
 # Run the client threads
 clients = [Thread(target=client, args=(i,)) for i in range(clCount)]
 for cl in clients: cl.start()
+for cl in clients: cl.join()
     
 # Save the averages on the file after all messages are sent and close file
 for i in range(clCount):
