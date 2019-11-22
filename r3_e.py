@@ -1,21 +1,30 @@
 import socket
 import datetime
 
-msgFromClient       = "testtesttest"
+dAddress = ("10.10.5.2", 30430)
 
-bytesToSend         = str.encode(msgFromClient)
+localIP ="10.10.6.2"
+localPort = 30301
 
-r3Address = ("10.10.6.2", 30320)
+bufferSize = 1024
 
-bufferSize          = 1024
 
-# Create a UDP socket at client side
+UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+UDPServerSocket.bind((localIP, localPort))
+
+bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
+message = bytesAddressPair[0]
+address = bytesAddressPair[1]
+clientMsg = "Message from Client:{}".format(message)
+clientIP  = "Client IP Address:{}".format(address)
+print(clientMsg)
+print(clientIP)
+
 UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-#UDPClientSocket.connect((serverAddressPort))
-# Send to server using created UDP socket
-UDPClientSocket.sendto(bytesToSend, r3Address)
+UDPClientSocket.sendto(message, dAddress)
 
 msgFromServer = UDPClientSocket.recvfrom(bufferSize)
  
 msg = "Message from Server {}".format(msgFromServer[0])
 print(msg)
+UDPServerSocket.sendto(bytesToSend, address)
