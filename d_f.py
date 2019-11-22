@@ -7,12 +7,8 @@ localPorts   = [30410, 30420, 30430]
 
 msgCount = 1000
 bufferSize  = 1024
-msgFromClient = "testtesttest"
 
 # Init
-bytesToSend = str.encode(msgFromClient)
-
-
 
 def server(i):  
     UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
@@ -28,7 +24,7 @@ def server(i):
         #print(clientMsg)
         #print(clientIP)
 
-        bytesToSend         = str.encode(str(message).upper())
+        bytesToSend = str.encode(str(message).upper())
         UDPServerSocket.sendto(bytesToSend, address)
     UDPServerSocket.close()
     
