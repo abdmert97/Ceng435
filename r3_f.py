@@ -9,8 +9,8 @@ localPorts   = [30320]
 bufferSize  = 1024
 
 # Count of server and client nodes to be started
-svCount = 2
-clCount = 1
+svCount = 1
+clCount = 2
 
 # Count of messages to be sent or received
 msgCount = 1000
