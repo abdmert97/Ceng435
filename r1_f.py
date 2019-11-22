@@ -59,10 +59,9 @@ def client(i):
         #print(c.microseconds/1000.0)
         msg = "Message from Server {}".format(msgFromServer[0])
         #print(msg)
-        f.write(str(i) "->" + str(x) + " - " + str((c.microseconds)/1000.0) + "\n")
+        f.write(str(i) + "->" + str(x) + " - " + str((c.microseconds)/1000.0) + "\n")
     UDPClientSocket.close()
     testResults.append((totaltime/msgCount)/1000.0)
-    f.write(str(i) + " - " + str((totaltime/msgCount)/1000.0) + "\n")
     print(str((totaltime/msgCount)/1000.0) + "avg for " + str(i)) 
 
 clients = [Thread(target=client, args=(i,)) for i in range(clCount)]
