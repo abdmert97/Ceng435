@@ -7,7 +7,7 @@ bufferSize  = 1024
 
 UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 UDPServerSocket.bind((localIP, localPort))
-for i in range(1000)
+for i in range(1000):
   bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
 
   message = bytesAddressPair[0]
