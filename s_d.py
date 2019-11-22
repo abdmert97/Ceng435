@@ -13,7 +13,7 @@ serverAddressPorts = [r1AddressPort, r2AddressPort, r3AddressPort]
 bufferSize = 1024
 def client(i): 
     totaltime = 0
-    for x in range(100):
+    for x in range(1000):
         # Create a UDP socket at client side
         UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
         #UDPClientSocket.connect((serverAddressPorts[i]))
@@ -28,7 +28,7 @@ def client(i):
         #print(c.microseconds/1000.0)
         msg = "Message from Server {}".format(msgFromServer[0])
         #print(msg)
-    print(str(totaltime/100) + "avg for " + str(i)) 
+    print(str(totaltime/1000) + "avg for " + str(i)) 
 
 clients = [Thread(target=client, args=(i,)) for i in range(3)]
 for cl in clients: cl.start()
