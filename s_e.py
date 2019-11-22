@@ -23,3 +23,5 @@ for i in range(1000):
     UDPClientSocket.sendto(bytesToSend, r3Address)
     # Wait until the response is received from server
     msgFromServer = UDPClientSocket.recvfrom(bufferSize) 
+# Close the client socket
+UDPClientSocket.close()
