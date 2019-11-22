@@ -2,20 +2,27 @@ import socket
 import datetime
 from threading import Thread 
 
+
+# SETTINGS
 localIP     ="10.10.4.1"
 localPorts   = [30120]
 bufferSize  = 1024
 
-msgFromClient = "Hello UDP Server"
+msgCount = 1000
+msgFromClient = "testtesttest"
 
+sAddress = ("10.10.2.2", 30010)
+dAddress = ("10.10.5.2", 30410)
+
+# Init
 bytesToSend = str.encode(msgFromClient)
-
+serverAddressPorts = [sAddress, dAddress]
 
 
 def server(i):  
     UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
     UDPServerSocket.bind((localIP, localPorts[i]))
-    for x in range(1000):
+    for x in range(msgCount):
         #print("UDP thread"+str(i)+" up and listening")
         bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
 
@@ -33,7 +40,7 @@ servers = [Thread(target=server, args=(i,)) for i in range(1)]
 for sv in servers: sv.start()
 
 
-serverAddressPorts = [("10.10.2.2", 30010), ("10.10.5.2", 30410)]
+
 f = open("link_costs.txt", "w")
 
 def client(i): 
