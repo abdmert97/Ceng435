@@ -18,11 +18,11 @@ for i in range(1000):
   sendtime = datetime.datetime.strptime(raw_message, "%Y-%m-%d %H:%M:%S.%f")
   delay = (datetime.datetime.now().microsecond-sendtime.microsecond)/1000.0
   totaltime += delay
-  print("formatted: " + str(delay))
+  print(str(delay))
   clientMsg = "Message from Client:{}".format(message)
   clientIP  = "Client IP Address:{}".format(address)
-  print(clientMsg)
-  print(clientIP)
+  #print(clientMsg)
+  #print(clientIP)
 
   UDPServerSocket.sendto(message, address)
-print(str(totaltime/1000.0))
+print("total: " + str(totaltime/1000.0))
