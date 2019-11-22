@@ -20,13 +20,13 @@ for i in range(1000):
     address = bytesAddressPair[1]
     clientMsg = "Message from Client:{}".format(message)
     clientIP  = "Client IP Address:{}".format(address)
-    print(clientMsg)
-    print(clientIP)
+    #print(clientMsg)
+    #print(clientIP)
 
     UDPClientSocket.sendto(message, dAddress)
 
     msgFromServer = UDPClientSocket.recvfrom(bufferSize)
 
     msg = "Message from Server {}".format(msgFromServer[0])
-    print(msg)
+    #print(msg)
     UDPServerSocket.sendto(msg, address)
