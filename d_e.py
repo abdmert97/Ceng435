@@ -16,6 +16,8 @@ for i in range(1000):
 
   raw_message = "{}".format(message)
   sendtime = datetime.datetime.strptime(raw_message, "%Y-%m-%d %H:%M:%S.%f")
+  print("now: " + str(datetime.datetime.now().microsecond))
+  print("sent: " + str(sendtime.microsecond))
   delay = (datetime.datetime.now().microsecond-sendtime.microsecond)/1000.0
   totaltime += delay
   print(str(delay))
