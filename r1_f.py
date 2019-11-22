@@ -17,6 +17,7 @@ dAddress = ("10.10.5.2", 30410)
 # Init
 bytesToSend = str.encode(msgFromClient)
 serverAddressPorts = [sAddress, dAddress]
+f = open("link_costs.txt", "w")
 
 
 def server(i):  
@@ -37,9 +38,6 @@ def server(i):
         UDPServerSocket.sendto(bytesToSend, address)
     UDPServerSocket.close()
 
-
-
-f = open("link_costs.txt", "w")
 
 def client(i): 
     f.write("--- Individual Tests ---\n")
