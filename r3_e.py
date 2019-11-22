@@ -1,6 +1,7 @@
 import socket
 import datetime
 
+# SETTINGS
 # Destination IP and port
 dAddress = ("10.10.5.2", 30430)
 
