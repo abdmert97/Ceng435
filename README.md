@@ -41,3 +41,4 @@
     * 3 is the code for "r3" node
     * 4 is the code for "d" node
     * 30+(server node)+(client node)+0
+  E.g. when "s" is server and "r3" is client, selected port is 30030
