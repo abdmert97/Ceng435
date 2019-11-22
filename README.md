@@ -24,4 +24,8 @@ Term Project
   ```
       $ ./configurationR3.sh 40 10
   ```
+  5. Run the scripts. All scripts should be run together to obtain a successful result.
+  ```
+      $ python s.py
+  ```  
 port 30(server)(client)0
