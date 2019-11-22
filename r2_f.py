@@ -4,45 +4,61 @@ from threading import Thread
 
 
 # SETTINGS
+# Count of messages to be sent or received
 msgCount = 1000
 msgFromClient = "testtesttest"
 bufferSize = 1024
 
+# Count of client nodes to be started
+clCount = 4
+
+# Addresses of the server nodes to be connected
 sAddress = ("10.10.2.2", 30020)
 r1Address = ("10.10.4.1", 30120)
 r3Address = ("10.10.6.2", 30320)
 dAddress = ("10.10.5.2", 30420)
 
-# Init
+# INIT
+# Averages of the RTT's
+testResults = []
+# Convert message to byte
 bytesToSend = str.encode(msgFromClient)
 serverAddressPorts = [sAddress , r1Address, r3Address, dAddress]
+# Open the file to save link costs
 f = open("link_costs.txt", "w")
 
+
 def client(i): 
-    f.write("--- Individual Tests ---\n")
+    # The total time taken(in microseconds) for all messages in this connection
     totaltime = 0
-    # Create a UDP socket at client side
+    # Initialize the client socket
     UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+    # Messaging procedure of client
     for x in range(msgCount):
-        #UDPClientSocket.connect((serverAddressPorts[i]))
-        # Send to server using created UDP socket
+        # Send the message to server
         UDPClientSocket.sendto(bytesToSend, serverAddressPorts[i])
-        a = datetime.datetime.now()
-
+        # Record the clock at the send time
+        sendTime = datetime.datetime.now()
+        # Wait until the response is received from server
         msgFromServer = UDPClientSocket.recvfrom(bufferSize)
-        b = datetime.datetime.now()
-        c = b - a
-        totaltime += c.microseconds
-        #print(c.microseconds/1000.0)
-        msg = "Message from Server {}".format(msgFromServer[0])
-        #print(msg)
-        f.write(str(x) + " - " + str((c.microseconds)/1000.0) + "\n")
+        # Record the clock at the send time
+        receiveTime = datetime.datetime.now()
+        # Delay is the difference of clocks at send and receive times
+        delay = receiveTime - sendTime
+        totaltime += delay.microseconds
+        # Write result of this message to the file 
+        f.write(str(i) + "->" + str(x) + " - " + str((delay.microseconds)/1000.0) + "\n")
+    # Close the client socket
     UDPClientSocket.close()
-    f.write("--- Average Cost ---\n")
-    f.write(str(i) + " - " + str((totaltime/msgCount)/1000.0) + "\n")
-    print(str((totaltime/msgCount)/1000.0) + "avg for " + str(i)) 
-
-clients = [Thread(target=client, args=(i,)) for i in range(4)]
+    # Save the average results to the testResults
+    testResults.append((totaltime/msgCount)/1000.0)
+    
+    
+# Run the client threads
+clients = [Thread(target=client, args=(i,)) for i in range(clCount)]
 for cl in clients: cl.start()
-for cl in clients: cl.join()
+    
+# Save the averages on the file after all messages are sent and close file
+for i in range(clCount):
+    f.write(str(i) + " - " + str(testResults[i]) + "\n")
 f.close()
