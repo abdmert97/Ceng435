@@ -21,7 +21,7 @@
    ```
       $ sudo ntpdate pool.ntp.org
   ```
-  4. Configure the node with the bash script for the node. Bash script takes the network emulation delay as argument. 
+  4. Configure the node with the bash script for the node.TC is used with "replace" argument in this script, you should use it with "add" in first execution. Bash script takes the network emulation delay as argument. 
   Example for configuration of R3 node with 40ms+-5ms delay
   ```
       $ ./configurationR3.sh 40 10
