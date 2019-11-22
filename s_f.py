@@ -12,7 +12,6 @@ svCount = 0
 msgCount = 1000
 bufferSize  = 1024
 
-# Init
 
 def server(i):   
     # Initialize the server socket and bind to localip&localport
