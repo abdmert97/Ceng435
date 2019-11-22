@@ -8,9 +8,13 @@ localPort = 30300
 
 bufferSize = 1024
 
+UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+UDPServerSocket.bind((localIP, localPort))
+
+UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+UDPClientSocket.sendto(message, dAddress)
+
 for i in range(1000):
-    UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-    UDPServerSocket.bind((localIP, localPort))
 
     bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
     message = bytesAddressPair[0]
@@ -20,8 +24,6 @@ for i in range(1000):
     print(clientMsg)
     print(clientIP)
 
-    UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-    UDPClientSocket.sendto(message, dAddress)
 
     msgFromServer = UDPClientSocket.recvfrom(bufferSize)
 
