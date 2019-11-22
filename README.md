@@ -7,7 +7,7 @@
 ---
 ## Discovery Part:
   1. Create the network topology and transfer the related python scripts to the nodes. Every node has its own script and its related scripts are named as nameofthenode+".py". For the discovery part the scripts are under the "discovery" folder.
-  2. Run the scripts. All scripts should be run together to obtain a successful result. 
+  2. Run the scripts. All scripts should be run together to obtain a successful result. Run the scripts s and d first, r1 and r3 second and r2 last.
   ```
       $ python s.py
   ```  
@@ -26,7 +26,7 @@
   ```
       $ ./configurationR3.sh 40 10
   ```
-  5. Run the scripts. All scripts should be run together to obtain a successful result.
+  5. Run the scripts. All scripts should be run together to obtain a successful result. Run the scripts d first, r3 second and s last.
   ```
       $ python r3.py
   ``` 
@@ -45,5 +45,8 @@
   
   * link_costs.txt: 
     * Every message's rtt is recorded. The format is "connectionnumber"->"message number" - "rtt"
-    * Every links average rtt is recorded. The format is "connectionnumber" - "average rtt"
+    * Every link's average cost is recorded at the end of the line. The format is "connectionnumber" - "average rtt"
     
+  * end_to_end.txt: 
+    * Every message's end to end delay is recorded.
+    * Average is recorded at the end of the line.    
