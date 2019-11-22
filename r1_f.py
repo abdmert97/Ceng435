@@ -59,7 +59,7 @@ def client(i):
         #print(c.microseconds/1000.0)
         msg = "Message from Server {}".format(msgFromServer[0])
         #print(msg)
-        testResults[i][x] = (c.microseconds)/1000.0))
+        testResults[i][x] = (c.microseconds)/1000.0
     UDPClientSocket.close()
     testAverages[i] = (totaltime/msgCount)/1000.0
     print(str((totaltime/msgCount)/1000.0) + "avg for " + str(i)) 
