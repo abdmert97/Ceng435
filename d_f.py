@@ -27,5 +27,6 @@ def server(i):
 
         bytesToSend         = str.encode(str(message).upper())
         UDPServerSocket.sendto(bytesToSend, address)
+    UDPServerSocket.close()
 servers = [Thread(target=server, args=(i,)) for i in range(3)]
 for sv in servers: sv.start()
