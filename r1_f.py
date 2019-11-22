@@ -71,5 +71,5 @@ for sv in servers: sv.start()
 for sv in servers: sv.join()
 for cl in clients: cl.join()
 for i in range(clCount):
-    f.write(str(i) + " - " + testResults[i] + "\n")
+    f.write(str(i) + " - " + str(testResults[i]) + "\n")
 f.close()
