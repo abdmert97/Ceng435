@@ -5,11 +5,11 @@ from threading import Thread
 msgFromClient = "Hello UDP Server"
 
 bytesToSend = str.encode(msgFromClient)
-sAddressPort = ("10.10.2.2", 30020)
-r1AddressPort = ("10.10.4.1", 30120)
-r3AddressPort = ("10.10.6.2", 30320)
-dAddressPort = ("10.10.5.2", 30420)
-serverAddressPorts = [sAddressPort , r1AddressPort, r3AddressPort, dAddressPort]
+sAddress = ("10.10.2.2", 30020)
+r1Address = ("10.10.4.1", 30120)
+r3Address = ("10.10.6.2", 30320)
+dAddress = ("10.10.5.2", 30420)
+serverAddressPorts = [sAddress , r1Address, r3Address, dAddress]
 f = open("link_costs.txt", "w")
 bufferSize = 1024
 def client(i): 
