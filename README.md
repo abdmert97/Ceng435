@@ -31,3 +31,13 @@
       $ python r3.py
   ``` 
   6. The result files will be on the node d and will be named "end_to_end.txt".
+
+*Info*
+---
+  * The local ports are choosen with the pattern: 
+    * 0 is the code for "s" node
+    * 1 is the code for "r1" node
+    * 2 is the code for "r2" node
+    * 3 is the code for "r3" node
+    * 4 is the code for "d" node
+    * 30+(server node)+(client node)+0
