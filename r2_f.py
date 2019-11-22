@@ -13,10 +13,11 @@ serverAddressPorts = [sAddressPort , r1AddressPort, r3AddressPort, dAddressPort]
 f = open("link_costs.txt", "w")
 bufferSize = 1024
 def client(i): 
+    f.write("--- Individual Tests ---")
     totaltime = 0
+    UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
     for x in range(1000):
         # Create a UDP socket at client side
-        UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
         #UDPClientSocket.connect((serverAddressPorts[i]))
         # Send to server using created UDP socket
         UDPClientSocket.sendto(bytesToSend, serverAddressPorts[0])
@@ -29,6 +30,9 @@ def client(i):
         #print(c.microseconds/1000.0)
         msg = "Message from Server {}".format(msgFromServer[0])
         #print(msg)
+        f.write(str(x) + " - " + str((c.microseconds)/1000.0) + "\n")
+    UDPClientSocket.close()
+    f.write("--- Average Cost ---")
     f.write(str(i) + " - " + str((totaltime/1000)/1000.0) + "\n")
     print(str((totaltime/1000)/1000.0) + "avg for " + str(i)) 
 
