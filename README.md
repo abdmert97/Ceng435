@@ -1,5 +1,5 @@
 # Ceng435
-### This file includes the installation & run instrucions of Ceng435 Term Project Part 1
+### This readme file includes the installation & run instrucions of Ceng435 Term Project Part 1
 
 *Installation*
 ---
