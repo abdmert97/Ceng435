@@ -1,7 +1,7 @@
 # Ceng435
 ### This readme file includes the installation & run instrucions of Ceng435 Term Project Part 1
 
-*Installation*
+*How To Run*
 ---
 ## Discovery Part:
   1. Create the network topology and transfer the related python scripts to the nodes. Every node has its own script and its related scripts are named as nameofthenode+".py". For the discovery part the scripts are under the "discovery" folder.
