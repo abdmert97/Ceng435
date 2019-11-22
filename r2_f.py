@@ -10,7 +10,7 @@ r1AddressPort = ("10.10.4.1", 30120)
 r3AddressPort = ("10.10.6.2", 30320)
 dAddressPort = ("10.10.5.2", 30420)
 serverAddressPorts = [sAddressPort , r1AddressPort, r3AddressPort, dAddressPort]
-
+f = open("link_costs.txt", "w")
 bufferSize = 1024
 def client(i): 
     totaltime = 0
@@ -29,7 +29,11 @@ def client(i):
         #print(c.microseconds/1000.0)
         msg = "Message from Server {}".format(msgFromServer[0])
         #print(msg)
+        f.write(str((c.microseconds/1000)/1000.0) + "\n")
     print(str((totaltime/1000)/1000.0) + "avg for " + str(i)) 
 
 clients = [Thread(target=client, args=(i,)) for i in range(4)]
 for cl in clients: cl.start()
+    
+for cl in clients: cl.join()
+f.close()
