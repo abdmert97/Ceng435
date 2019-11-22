@@ -4,7 +4,7 @@ from threading import Thread
 
 
 # SETTINGS
-
+msgCount = 1000
 msgFromClient = "testtesttest"
 bufferSize = 1024
 
@@ -23,7 +23,7 @@ def client(i):
     totaltime = 0
     UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
     print("Sending to " + str(i))
-    for x in range(1000):
+    for x in range(msgCount):
         # Create a UDP socket at client side
         #UDPClientSocket.connect((serverAddressPorts[i]))
         # Send to server using created UDP socket
@@ -34,15 +34,15 @@ def client(i):
         b = datetime.datetime.now()
         c = b - a
         totaltime += c.microseconds
-        #print(c.microseconds/1000.0)
+        print(c.microseconds/1000.0)
         msg = "Message from Server {}".format(msgFromServer[0])
-        #print(msg)
+        print(msg)
         f.write(str(x) + " - " + str((c.microseconds)/1000.0) + "\n")
     print("Closing " + str(i))
     UDPClientSocket.close()
     f.write("--- Average Cost ---\n")
-    f.write(str(i) + " - " + str((totaltime/1000)/1000.0) + "\n")
-    print(str((totaltime/1000)/1000.0) + "avg for " + str(i)) 
+    f.write(str(i) + " - " + str((totaltime/msgCount)/1000.0) + "\n")
+    print(str((totaltime/msgCount)/1000.0) + "avg for " + str(i)) 
 
 clients = [Thread(target=client, args=(i,)) for i in range(4)]
 for cl in clients: cl.start()
