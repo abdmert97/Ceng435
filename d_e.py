@@ -16,9 +16,9 @@ for i in range(1000):
 
   raw_message = "{}".format(message)
   sendtime = datetime.datetime.strptime(raw_message, "%Y-%m-%d %H:%M:%S.%f")
-  delay = datetime.datetime.now().microsecond-sendtime.microsecond
+  delay = (datetime.datetime.now().microsecond-sendtime.microsecond)/1000.0
   totaltime += delay
-  print("formatted: " + str(delay/1000.0))
+  print("formatted: " + str(delay))
   clientMsg = "Message from Client:{}".format(message)
   clientIP  = "Client IP Address:{}".format(address)
   print(clientMsg)
