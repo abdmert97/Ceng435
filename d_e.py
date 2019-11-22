@@ -25,4 +25,4 @@ for i in range(1000):
   print(clientIP)
 
   UDPServerSocket.sendto(message, address)
-print(totaltime/1000.0)
+print(str(totaltime/1000.0))
