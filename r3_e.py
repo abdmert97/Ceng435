@@ -9,6 +9,9 @@ localIP ="10.10.6.2"
 localPort = 30300
 
 bufferSize = 1024
+
+
+
 # Open UDP server socket
 UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 # Bind UDP socket for server to localIP in localPort
