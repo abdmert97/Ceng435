@@ -61,8 +61,8 @@ def client(i):
         f.write(str(x) + " - " + str((c.microseconds)/1000.0) + "\n")
     UDPClientSocket.close()
     f.write("--- Average Cost ---\n")
-    f.write(str(i) + " - " + str((totaltime/1000)/1000.0) + "\n")
-    print(str((totaltime/1000)/1000.0) + "avg for " + str(i))
+    f.write(str(i) + " - " + str((totaltime/msgCount)/1000.0) + "\n")
+    print(str((totaltime/msgCount)/1000.0) + "avg for " + str(i))
 
 clients = [Thread(target=client, args=(i,)) for i in range(2)]
 for cl in clients: cl.start()
