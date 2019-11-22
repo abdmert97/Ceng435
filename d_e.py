@@ -14,7 +14,7 @@ message = bytesAddressPair[0]
 address = bytesAddressPair[1]
 
 raw_message = "{}".format(message)
-sendtime = datetime.strptime(raw_message)
+sendtime = datetime.datetime.strptime(raw_message)
 print("formatted: " + str(sendtime))
 clientMsg = "Message from Client:{}".format(message)
 clientIP  = "Client IP Address:{}".format(address)
