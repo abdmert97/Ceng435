@@ -15,7 +15,7 @@ bytesToSend = str.encode(msgFromClient)
 def server(i):  
     UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
     UDPServerSocket.bind((localIP, localPorts[i]))
-    while(True):
+    for x in range(1000):
         print("UDP thread"+str(i)+" up and listening")
         bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
 
