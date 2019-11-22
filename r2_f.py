@@ -9,7 +9,7 @@ sAddressPort = ("10.10.2.2", 30020)
 r1AddressPort = ("10.10.4.1", 30120)
 r3AddressPort = ("10.10.6.2", 30320)
 dAddressPort = ("10.10.5.2", 30430)
-serverAddressPorts = [r1AddressPort, r2AddressPort, r3AddressPort]
+serverAddressPorts = [sAddressPort , r1AddressPort, r3AddressPort, dAddressPort]
 
 bufferSize = 1024
 def client(i): 
@@ -31,5 +31,5 @@ def client(i):
         #print(msg)
     print(str((totaltime/1000)/1000.0) + "avg for " + str(i)) 
 
-clients = [Thread(target=client, args=(i,)) for i in range(3)]
+clients = [Thread(target=client, args=(i,)) for i in range(4)]
 for cl in clients: cl.start()
