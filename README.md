@@ -6,7 +6,7 @@
 *How To Run*
 ---
 ## Discovery Part:
-  1. Create the network topology and transfer the related python scripts to the nodes. Every node has its own script and its related scripts are named as nameofthenode+".py". For the discovery part the scripts are under the "discovery" folder.
+  1. Create the network topology and transfer the related python scripts to the nodes. Every node has its own script and its related scripts are named as nameofthenode+".py". For the discovery part the scripts are under the "discoveryScripts" folder.
   2. Run the scripts. All scripts should be run together to obtain a successful result. Run the scripts s and d first, r1 and r3 second and r2 last.
   ```
       $ python s.py
@@ -15,7 +15,7 @@
 
 ## Experiment Part:
   For this part, only the nodes s, r3, d are used because the shortest path contains only these nodes.
-  1. Create the network topology and transfer the related python scripts to the nodes. Every node has its own script and its related scripts are named as nameofthenode+".py". For the discovery part the scripts are under the "discovery" folder.
+  1. Create the network topology and transfer the related python scripts to the nodes. Every node has its own script and its related scripts are named as nameofthenode+".py". For the discovery part the scripts are under the "experimentScripts" folder.
   2. Transfer the related configuration scripts to the nodes. Every node has its own script and its related scripts are named as "configure"+nameofthenode(capital)+".sh"
   3. Synchronize nodes using ntp
    ```
