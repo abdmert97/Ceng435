@@ -34,4 +34,5 @@ def server(i):
 # Run the server threads
 servers = [Thread(target=server, args=(i,)) for i in range(svCount)]
 for sv in servers: sv.start()
+# Wait until threads end
 for sv in servers: sv.join()
