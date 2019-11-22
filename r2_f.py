@@ -27,7 +27,7 @@ def client(i):
         # Create a UDP socket at client side
         #UDPClientSocket.connect((serverAddressPorts[i]))
         # Send to server using created UDP socket
-        UDPClientSocket.sendto(bytesToSend, serverAddressPorts[0])
+        UDPClientSocket.sendto(bytesToSend, serverAddressPorts[i])
         a = datetime.datetime.now()
 
         msgFromServer = UDPClientSocket.recvfrom(bufferSize)
