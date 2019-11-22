@@ -26,6 +26,6 @@
   ```
   5. Run the scripts. All scripts should be run together to obtain a successful result.
   ```
-      $ python s.py
+      $ python r3.py
   ``` 
   6. The result files will be on the node d and will be named "end_to_end.txt".
