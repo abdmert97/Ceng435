@@ -1,15 +1,14 @@
 import socket
 from threading import Thread 
 
+# SETTINGS
 localIP     ="10.10.2.2"
 localPorts   = [30010, 30020, 30030]
+
+msgCount = 1000
 bufferSize  = 1024
 
-msgFromClient = "Hello UDP Server"
-
-bytesToSend = str.encode(msgFromClient)
-
-
+# Init
 
 def server(i):  
     UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
@@ -25,7 +24,7 @@ def server(i):
         #print(clientMsg)
         #print(clientIP)
 
-        bytesToSend         = str.encode(str(message).upper())
+        bytesToSend = str.encode(str(message).upper())
         UDPServerSocket.sendto(bytesToSend, address)
     UDPServerSocket.close()
 servers = [Thread(target=server, args=(i,)) for i in range(3)]
