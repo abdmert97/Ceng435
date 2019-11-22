@@ -2,20 +2,28 @@ import socket
 import datetime
 from threading import Thread 
 
+
+# SETTINGS
 localIP     ="10.10.6.2"
 localPorts   = [30320]
 bufferSize  = 1024
 
-msgFromClient = "Hello UDP Server"
+msgCount = 1000
+msgFromClient = "testtesttest"
 
+sAddress = ("10.10.2.2", 30030)
+dAddress = ("10.10.5.2", 30430)
+
+# Init
 bytesToSend = str.encode(msgFromClient)
-
+serverAddressPorts = [sAddress, dAddress]
+f = open("link_costs.txt", "w")
 
 
 def server(i):  
     UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
     UDPServerSocket.bind((localIP, localPorts[i]))
-    for x in range(1000):
+    for x in range(msgCount):
         #print("UDP thread"+str(i)+" up and listening")
         bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
 
@@ -29,19 +37,15 @@ def server(i):
         bytesToSend         = str.encode(str(message).upper())
         UDPServerSocket.sendto(bytesToSend, address)
     UDPServerSocket.close()
-servers = [Thread(target=server, args=(i,)) for i in range(1)]
-for sv in servers: sv.start()
 
 
-serverAddressPorts = [("10.10.2.2", 30030), ("10.10.5.2", 30430)]
-f = open("link_costs.txt", "w")
 
 def client(i):
     f.write("--- Individual Tests ---\n")
     # Create a UDP socket at client side
     UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
     totaltime = 0
-    for x in range(1000):
+    for x in range(msgCount):
         #UDPClientSocket.connect((serverAddressPorts[i]))
         # Send to server using created UDP socket
         UDPClientSocket.sendto(bytesToSend, serverAddressPorts[i])
@@ -62,6 +66,8 @@ def client(i):
 
 clients = [Thread(target=client, args=(i,)) for i in range(2)]
 for cl in clients: cl.start()
+servers = [Thread(target=server, args=(i,)) for i in range(1)]
+for sv in servers: sv.start()
 for sv in servers: sv.join()
 for cl in clients: cl.join()
 f.close()
