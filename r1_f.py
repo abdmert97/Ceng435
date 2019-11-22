@@ -33,6 +33,7 @@ for sv in servers: sv.start()
 
 
 serverAddressPorts = [("10.10.2.2", 30010), ("10.10.5.2", 30410)]
+f = open("link_costs.txt", "w")
 
 def client(i): 
     totaltime = 0
@@ -51,7 +52,11 @@ def client(i):
         #print(c.microseconds/1000.0)
         msg = "Message from Server {}".format(msgFromServer[0])
         #print(msg)
+    f.write(str(i) + " - " + str((c.totaltime/1000)/1000.0) + "\n")
     print(str((totaltime/1000)/1000.0) + "avg for " + str(i)) 
 
 clients = [Thread(target=client, args=(i,)) for i in range(2)]
 for cl in clients: cl.start()
+for sv in servers: sv.join()
+for cl in clients: cl.join()
+f.close()
