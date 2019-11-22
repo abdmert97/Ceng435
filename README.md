@@ -1,16 +1,18 @@
 # Ceng435
 Term Project
-kill process at port : sudo kill -9 $(sudo lsof -t -i:30211)
 
+*Installation*
+---
+Discovery Part:
+  1. Create the network topology and transfer the related python scripts to the nodes. Every node has its own script and its related scripts are named the same with the name of the node. For the discovery part the scripts are under the "discovery" folder.
+  2. Run the scripts. All scripts should be run together to obtain a successful result. 
+    ```
+      $ python s.py
+    ```
+  3. The result files will be on the nodes r1,r2,r3 and will be named "link_costs.txt".
 
-the costs of the links (s-r1, r1-d) will be estimated and saved by r1,  the costs of the links (s-r3, r3-d) will be estimated and saved by r3, and finally, the costs of the links (s-r2,r1-r2, r2-r3, r2-d) will be estimated and saved by r2
-
-* s sadece verici ve r1, r2, r3 e veriyor
-* d sadece verici ve r1,r2,r3e veriyor
-* diğerleri hem alıcı hem verici
-* r1 sden alıyor r2 ile dye veriyor
-* r2 s,r1den alıyor d,r3e veriyor
-* r3 s,r2den alıyor d den alıyor
-
-
+Experiment Part:
+  For this part, only the nodes s, r3, d are used because the shortest path contains only these nodes.
+  1. Create the network topology and transfer the related python scripts to the nodes. Every node has its own script and its related scripts are named the same with the name of the node. For the discovery part the scripts are under the "discovery" folder.
+  2. For the 
 port 30(server)(client)0
