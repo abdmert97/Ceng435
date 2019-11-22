@@ -82,10 +82,12 @@ for cl in clients: cl.start()
 # Run the server threads
 servers = [Thread(target=server, args=(i,)) for i in range(svCount)]
 for sv in servers: sv.start()
+# Wait ıntil threads end
 for sv in servers: sv.join()
 for cl in clients: cl.join()
     
 # Save the averages on the file after all messages are sent and close file
 for i in range(clCount):
     f.write(str(i) + " - " + str(testResults[i]) + "\n")
+# Close file
 f.close()
