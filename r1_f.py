@@ -46,6 +46,7 @@ def client(i):
     totaltime = 0
     # Create a UDP socket at client side
     UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+    turnResults = []
     for x in range(msgCount):
         #UDPClientSocket.connect((serverAddressPorts[i]))
         # Send to server using created UDP socket
@@ -59,7 +60,8 @@ def client(i):
         #print(c.microseconds/1000.0)
         msg = "Message from Server {}".format(msgFromServer[0])
         #print(msg)
-        testResults[i][x] = (c.microseconds)/1000.0
+        turnResults.append((c.microseconds)/1000.0)
+    testResults.append(turnResults)
     UDPClientSocket.close()
     testAverages[i] = (totaltime/msgCount)/1000.0
     print(str((totaltime/msgCount)/1000.0) + "avg for " + str(i)) 
