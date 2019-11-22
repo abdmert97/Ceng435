@@ -6,7 +6,7 @@ localIP     ="10.10.5.2"
 localPorts   = [30410, 30420, 30430]
 
 # Count of server nodes to be started
-svCount = 0
+svCount = 3
 
 # Count of messages to be sent
 msgCount = 1000
