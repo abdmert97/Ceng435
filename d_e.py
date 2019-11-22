@@ -38,5 +38,6 @@ for i in range(msgCount):
   UDPServerSocket.sendto(message, address)
   # Close the server socket
   UDPServerSocket.close()
+# Save the average on the file after all messages are sent and close file
 f.write("avg: " + str(totaltime/1000.0))
 f.close()
