@@ -28,6 +28,7 @@ def server(i):
 
         bytesToSend         = str.encode(str(message).upper())
         UDPServerSocket.sendto(bytesToSend, address)
+    UDPServerSocket.close()
 servers = [Thread(target=server, args=(i,)) for i in range(1)]
 for sv in servers: sv.start()
 
@@ -36,10 +37,11 @@ serverAddressPorts = [("10.10.2.2", 30010), ("10.10.5.2", 30410)]
 f = open("link_costs.txt", "w")
 
 def client(i): 
+    f.write("--- Individual Tests ---\n")
     totaltime = 0
+    # Create a UDP socket at client side
+    UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
     for x in range(1000):
-        # Create a UDP socket at client side
-        UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
         #UDPClientSocket.connect((serverAddressPorts[i]))
         # Send to server using created UDP socket
         UDPClientSocket.sendto(bytesToSend, serverAddressPorts[i])
@@ -52,6 +54,9 @@ def client(i):
         #print(c.microseconds/1000.0)
         msg = "Message from Server {}".format(msgFromServer[0])
         #print(msg)
+        f.write(str(x) + " - " + str((c.microseconds)/1000.0) + "\n")
+    UDPClientSocket.close()
+    f.write("--- Average Cost ---\n")
     f.write(str(i) + " - " + str((totaltime/1000)/1000.0) + "\n")
     print(str((totaltime/1000)/1000.0) + "avg for " + str(i)) 
 
