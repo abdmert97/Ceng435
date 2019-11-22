@@ -27,4 +27,4 @@ msgFromServer = UDPClientSocket.recvfrom(bufferSize)
  
 msg = "Message from Server {}".format(msgFromServer[0])
 print(msg)
-UDPServerSocket.sendto(bytesToSend, address)
+UDPServerSocket.sendto(msg, address)
