@@ -1,11 +1,11 @@
 import socket
 import datetime
 
-msgFromClient       = "Hello UDP Server"
+msgFromClient       = "testtesttest"
 
 bytesToSend         = str.encode(msgFromClient)
 
-serverAddressPort   = ("10.10.4.1", 30211)
+r3Address = ("10.10.6.2", 30320)
 
 bufferSize          = 1024
 
@@ -13,7 +13,7 @@ bufferSize          = 1024
 UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 #UDPClientSocket.connect((serverAddressPort))
 # Send to server using created UDP socket
-UDPClientSocket.sendto(bytesToSend, serverAddressPort)
+UDPClientSocket.sendto(bytesToSend, r3Address)
 
 msgFromServer = UDPClientSocket.recvfrom(bufferSize)
  
