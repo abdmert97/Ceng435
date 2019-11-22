@@ -36,7 +36,7 @@ def client(i):
     f.write(str(i) + " - " + str((totaltime/1000)/1000.0) + "\n")
     print(str((totaltime/1000)/1000.0) + "avg for " + str(i)) 
 
-clients = [Thread(target=client, args=(i,)) for i in range(1)]
+clients = [Thread(target=client, args=(i,)) for i in range(4)]
 for cl in clients: cl.start()
 for cl in clients: cl.join()
 f.close()
