@@ -6,8 +6,10 @@
 *How To Run*
 ---
 ## Discovery Part:
-  1. Create the network topology and transfer the related python scripts to the nodes. Every node has its own script and its related scripts are named as nameofthenode+".py". For the discovery part the scripts are under the "discoveryScripts" folder.
-  2. Run the scripts. All scripts should be run together to obtain a successful result. Run the scripts in the order: s and d first, r1 and r3 second and r2 last.
+  In this part, we configure r1 and r2.
+  1. Run configureR1.sh in r1 and run configureR2.sh in r2 host.
+  2. Create the network topology and transfer the related python scripts to the nodes. Every node has its own script and its related scripts are named as nameofthenode+".py". For the discovery part the scripts are under the "discoveryScripts" folder.
+  3. Run the scripts. All scripts should be run together to obtain a successful result. Run the scripts in the order: s and d first, r1 and r3 second and r2 last.
   ```
       $ python s.py
   ```  
